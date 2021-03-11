@@ -34,54 +34,18 @@ module.exports = {
     const text = result.fullTextAnnotation.text;
     const lines = text.split('\n');
 
-    const data = {
-      left: [
-        {
-          name: lines[0],
-          power: lines[1].replace(/[^0-9]/g, '')
-        },
-        {
-          name: lines[6],
-          power: lines[7].replace(/[^0-9]/g, '')
-        },
-        {
-          name: lines[12],
-          power: lines[13].replace(/[^0-9]/g, '')
-        },
-        {
-          name: lines[18],
-          power: lines[19].replace(/[^0-9]/g, '')
-        },
-        {
-          name: lines[24],
-          power: lines[25].replace(/[^0-9]/g, '')
-        }
-      ],
-      right: [
-        {
-          name: lines[3],
-          power: lines[2].replace(/[^0-9]/g, '')
-        },
-        {
-          name: lines[9],
-          power: lines[8].replace(/[^0-9]/g, '')
-        },
-        {
-          name: lines[15],
-          power: lines[14].replace(/[^0-9]/g, '')
-        },
-        {
-          name: lines[21],
-          power: lines[20].replace(/[^0-9]/g, '')
-        },
-        {
-          name: lines[27],
-          power: lines[26].replace(/[^0-9]/g, '')
-        }
-      ]
-    }
+    const data = [
+      ['Left Player Name', 'Left Player Power', 'Right Player Name', 'Right Player Power'],
+      [lines[0], lines[1].replace(/[^0-9]/g, ''), lines[3], lines[2].replace(/[^0-9]/g, '')],
+      [lines[6], lines[7].replace(/[^0-9]/g, ''), lines[9], lines[8].replace(/[^0-9]/g, '')],
+      [lines[12], lines[13].replace(/[^0-9]/g, ''), lines[15], lines[14].replace(/[^0-9]/g, '')],
+      [lines[18], lines[19].replace(/[^0-9]/g, ''), lines[21], lines[20].replace(/[^0-9]/g, '')],
+      [lines[24], lines[25].replace(/[^0-9]/g, ''), lines[27], lines[26].replace(/[^0-9]/g, '')]
+    ];
 
-    await msg.channel.send()
+    console.log(data);
+    
+    await msg.channel.send('```' + table(data) + '```');
     
     fs.unlinkSync(path);
   }
