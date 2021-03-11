@@ -24,8 +24,7 @@ module.exports.download = async (url, dest = url.split('/').pop()) => {
         });
       })
       .on('error', function (err) {
-        // Handle errors
-        fs.unlink(dest); // Delete the file async. (But we don't check the result)
+        fs.unlinkSync(dest);
         rej(err);
       });
   });
