@@ -1,0 +1,25 @@
+{
+  "name": "HeroWarsVisionAnalysis-Bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fiverr-Jobs/HeroWarsVisionAnalysis-Bot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Fiverr-Jobs/HeroWarsVisionAnalysis-Bot/issues"
+  },
+  "homepage": "https://github.com/Fiverr-Jobs/HeroWarsVisionAnalysis-Bot#readme",
+  "dependencies": {
+    "@google-cloud/vision": "^2.3.1",
+    "discord.js": "^12.5.1",
+    "jimp": "^0.16.1"
+  }
+}
