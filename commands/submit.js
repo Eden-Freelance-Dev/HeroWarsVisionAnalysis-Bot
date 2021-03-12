@@ -22,12 +22,13 @@ module.exports = {
           names: row.split(':')[1].split('/')
         };
       });
+    console.log(hero)
 
     function getHero(name) {
       if(!heros.find((hero) => hero.names.includes(name))){
         throw new Error(`Hero ${name} not found in database.`);
       }
-      return heros.find((hero) => hero.names.includes(name)).abbreviation;
+      return heros.find((hero) => hero.names.includes(name.trim())).abbreviation;
     }
     if (
       msg.attachments.size == 0 ||
