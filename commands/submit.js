@@ -23,6 +23,8 @@ module.exports = {
         };
       });
 
+    console.log(heros);
+
     function getHero(name) {
       return heros.find((hero) => hero.names.includes(name)).abbreviation;
     }
@@ -35,11 +37,15 @@ module.exports = {
       return msg.channel.send('Please attach a bmp/jpeg/png/tiff file.');
     }
 
-    if (!['A', 'GA', 'GW', 'CS', 'T'].includes(args[0])) {
+    if (
+      !['A', 'GA', 'GW', 'CS', 'T', 'a', 'ga', 'gw', 'cs', 't'].includes(
+        args[0]
+      )
+    ) {
       return msg.channel.send('Valid battle types are A/GA/GW/CS/T.');
     }
 
-    if (!['A', 'B', 'C', 'D'].includes(args[1])) {
+    if (!['A', 'B', 'C', 'D', 'a', 'b', 'c', 'd'].includes(args[1])) {
       return msg.channel.send('Valid grades are A/B/C/D.');
     }
 
@@ -56,17 +62,9 @@ module.exports = {
     const lines = text.split('\n');
 
     const data = [
+      ['', 'Hero 1', 'Hero 2', 'Hero 3', 'Hero 4', 'Hero 5', 'Str'],
       [
-        '',
-        'Hero 1',
-        'Hero 2',
-        'Hero 3',
-        'Hero 4',
-        'Hero 5',
-        'Sum of strengths'
-      ],
-      [
-        'Left',
+        'Win',
         lines[0],
         lines[6],
         lines[12],
@@ -78,7 +76,7 @@ module.exports = {
         )
       ],
       [
-        'Right',
+        'Lose',
         lines[3],
         lines[9],
         lines[15],
@@ -89,7 +87,15 @@ module.exports = {
           0
         )
       ],
-      ['Battle Type:', args[0], 'Grade:', args[1], '', '', '']
+      [
+        'Type',
+        args[0].toUpperCase(),
+        'Grade',
+        args[1].toUpperCase(),
+        '',
+        '',
+        ''
+      ]
     ];
 
     await msg.channel.send('```' + table(data) + '```');

@@ -48,7 +48,7 @@ module.exports = {
         'W3',
         'W4',
         'W5',
-        'Grade'
+        'Grd'
       ],
       ...[...Array(15).keys()].slice(10).map((row) => {
         return [...Array(14).keys()].map(
@@ -72,7 +72,7 @@ module.exports = {
         'W3',
         'W4',
         'W5',
-        'Grade'
+        'Grd'
       ],
       ...[...Array(20).keys()].slice(15).map((row) => {
         return [...Array(14).keys()].map(
