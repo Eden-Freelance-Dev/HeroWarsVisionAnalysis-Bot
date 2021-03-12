@@ -13,23 +13,6 @@ module.exports = {
     return true;
   },
   async execute(bot, msg, args) {
-    const heros = fs
-      .readFileSync('heroes.txt', 'utf-8')
-      .split(/\r\n|\n/g)
-      .map((row) => {
-        return {
-          abbreviation: row.split(':')[0].toLowerCase(),
-          names: row.split(':')[1].split('/')
-        };
-      });
-    console.log(heros)
-
-    function getHero(name) {
-      if(!heros.find((hero) => hero.names.includes(name))){
-        throw new Error(`Hero ${name} not found in database.`);
-      }
-      return heros.find((hero) => hero.names.includes(name.trim())).abbreviation;
-    }
     if (
       msg.attachments.size == 0 ||
       !['png', 'jpg', 'bmp', 'jpeg', 'tiff'].some((type) =>
@@ -101,24 +84,6 @@ module.exports = {
     ];
 
     await msg.channel.send('```' + table(data) + '```');
-    await msg.channel.send(
-      args[0].toLowerCase() +
-        ` ${getHero(lines[0])} ${getHero(lines[6])} ${getHero(
-          lines[12]
-        )} ${getHero(lines[18])} ${getHero(lines[24])} ` +
-        `${[1, 7, 13, 19, 25].reduce(
-          (sum, i) => sum + parseInt(lines[i].replace(/[^0-9]/g, '')),
-          0
-        )}` +
-        ` ${getHero(lines[3])} ${getHero(lines[9])} ${getHero(
-          lines[15]
-        )} ${getHero(lines[21])} ${getHero(lines[27])} ` +
-        `${[2, 8, 14, 20, 26].reduce(
-          (sum, i) => sum + parseInt(lines[i].replace(/[^0-9]/g, '')),
-          0
-        )} ` +
-        args[1].toLowerCase()
-    );
 
     fs.unlinkSync(path);
   }
