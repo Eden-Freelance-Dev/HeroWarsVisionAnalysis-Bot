@@ -26,7 +26,7 @@ module.exports = {
     console.log(heros);
 
     function getHero(name) {
-      return heros.find((hero) => hero.names.includes(name)).abbreviation;
+      return heros.find((hero) => hero.names.includes(name))?.abbreviation;
     }
     if (
       msg.attachments.size == 0 ||
