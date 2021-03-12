@@ -22,7 +22,7 @@ module.exports = {
           names: row.split(':')[1].split('/')
         };
       });
-    console.log(hero)
+    console.log(heros)
 
     function getHero(name) {
       if(!heros.find((hero) => hero.names.includes(name))){
