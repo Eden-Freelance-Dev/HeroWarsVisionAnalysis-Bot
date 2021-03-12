@@ -15,7 +15,7 @@ module.exports = {
   async execute(bot, msg, args) {
     const abbreviations = fs
       .readFileSync('heroes.txt', 'utf-8')
-      .split(/[\n]|[\r\n]/g)
+      .split(/\r\n|\n/g)
       .map((row) => row.split(':')[0].toLowerCase());
     if (args.length < 3) {
       return msg.channel.send('Please at least enter 3 heros.');

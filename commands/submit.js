@@ -15,7 +15,7 @@ module.exports = {
   async execute(bot, msg, args) {
     const heros = fs
       .readFileSync('heroes.txt', 'utf-8')
-      .split(/[\n]|[\r\n]/g)
+      .split(/\r\n|\n/g)
       .map((row) => {
         return {
           abbreviation: row.split(':')[0].toLowerCase(),
@@ -24,7 +24,10 @@ module.exports = {
       });
 
     function getHero(name) {
-      return heros.find((hero) => hero.names.includes(name))?.abbreviation;
+      if(!heros.find((hero) => hero.names.includes(name))){
+        throw new Error(`Hero ${name} not found in database.`);
+      }
+      return heros.find((hero) => hero.names.includes(name)).abbreviation;
     }
     if (
       msg.attachments.size == 0 ||
