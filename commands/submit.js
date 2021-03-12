@@ -15,15 +15,13 @@ module.exports = {
   async execute(bot, msg, args) {
     const heros = fs
       .readFileSync('heroes.txt', 'utf-8')
-      .split('\n')
+      .split(/(\n)|(\r\n)/g)
       .map((row) => {
         return {
           abbreviation: row.split(':')[0].toLowerCase(),
           names: row.split(':')[1].split('/')
         };
       });
-
-    console.log(heros);
 
     function getHero(name) {
       return heros.find((hero) => hero.names.includes(name))?.abbreviation;
